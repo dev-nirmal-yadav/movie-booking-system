@@ -10,4 +10,9 @@ class Show
     @total_capacity = total_capacity
     @booked_seats = []
   end
+
+  def book_seat(seat_number)
+    available_seats.delete(seat_number)
+    booked_seats << seat_number
+  end
 end

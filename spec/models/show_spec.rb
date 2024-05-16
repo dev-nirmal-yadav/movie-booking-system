@@ -19,4 +19,16 @@ RSpec.describe Show do
       expect(show.booked_seats).to eq([])
     end
   end
+
+  describe '#book_seat' do
+    it 'books a seat and updates the booked_seats array' do
+      show.book_seat(1)
+      expect(show.booked_seats).to include(1)
+    end
+
+    it 'removes the booked seat from available seats' do
+      show.book_seat(1)
+      expect(show.available_seats).not_to include(1)
+    end
+  end
 end
