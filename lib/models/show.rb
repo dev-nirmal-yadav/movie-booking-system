@@ -11,8 +11,17 @@ class Show
     @booked_seats = []
   end
 
+  def available_seats
+    (1..@total_capacity).to_a - booked_seats
+  end
+
   def book_seat(seat_number)
     available_seats.delete(seat_number)
     booked_seats << seat_number
+  end
+
+  def release_seat(seat_number)
+    available_seats.push(seat_number)
+    booked_seats.delete(seat_number)
   end
 end

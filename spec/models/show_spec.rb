@@ -21,14 +21,42 @@ RSpec.describe Show do
   end
 
   describe '#book_seat' do
+    before { show.book_seat(1) }
+
     it 'books a seat and updates the booked_seats array' do
-      show.book_seat(1)
       expect(show.booked_seats).to include(1)
     end
 
     it 'removes the booked seat from available seats' do
-      show.book_seat(1)
       expect(show.available_seats).not_to include(1)
+    end
+  end
+
+  describe '#release_seat' do
+    before do
+      show.book_seat(1)
+      show.release_seat(1)
+    end
+
+    it 'releases a booked seat and updates the booked_seats array' do
+      expect(show.booked_seats).not_to include(1)
+    end
+
+    it 'adds the released seat back to available seats' do
+      expect(show.available_seats).to include(1)
+    end
+  end
+
+  describe '#available_seats' do
+    it 'returns all seats when no seats are booked' do
+      expect(show.available_seats.size).to eq(20)
+    end
+
+    it 'returns the correct available seats when some seats are booked' do
+      show.book_seat(1)
+      show.book_seat(2)
+      expect(show.available_seats).not_to include(1, 2)
+      expect(show.available_seats.size).to eq(18)
     end
   end
 end

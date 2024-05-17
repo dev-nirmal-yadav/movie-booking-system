@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require './lib/models/movie_booking_system'
+require './lib/movie_booking_system'
 require './lib/services/import_movies_service'
 
 RSpec.describe MovieBookingSystem do
