@@ -14,7 +14,7 @@ class BookTicketService
     ticket = Ticket.new(movie, show, seat_numbers)
     {
       ticket:,
-      message: 'Booking successful!!'
+      message: 'Ticket booked successfully!!'
     }
   end
 end
