@@ -4,7 +4,7 @@ require './lib/services/book_ticket_service'
 
 RSpec.describe BookTicketService do
   let(:movie) { double('Movie', title: 'Jurassic Park', genre: 'Adventure') }
-  let(:show) { double('Show', movie:, show_time: '10:00 AM', total_capacity: 20) }
+  let(:show) { Show.new(movie: movie, show_time: '10:00 AM', total_capacity: 20) }
   let(:seat_numbers) { [1, 2, 3] }
   let(:options) { { movie:, show:, seat_numbers: } }
 
@@ -23,7 +23,7 @@ RSpec.describe BookTicketService do
       expect(ticket.show).to eq(show)
       expect(ticket.seat_numbers).to eq(seat_numbers)
       expect(ticket.status).to eq(Ticket::BOOKED)
-      expect(result[:message]).to eq('Booking successful!!')
+      expect(result[:message]).to eq('Ticket booked successfully!!')
     end
   end
 end

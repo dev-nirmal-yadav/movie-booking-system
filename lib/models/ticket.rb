@@ -20,6 +20,14 @@ class Ticket
     @status = BOOKED
   end
 
+  def formatted_details
+    "ID: #{id} \n" \
+    "Status: #{status} \n" \
+    "Movie: #{movie.title} \n" \
+    "Show time: #{show.show_time} \n" \
+    "Seat Numbers: #{seat_numbers}"
+  end
+
   STATUSES.each do |status|
     define_method("#{status.downcase}?") { self.status == status }
   end

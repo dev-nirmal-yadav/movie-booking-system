@@ -41,4 +41,15 @@ class UserInteractionService
     method_name = choice.downcase.gsub(' ', '_')
     send(method_name)
   end
+
+  def view_tickets
+    tickets = booking_system.tickets
+    return prompt.warn 'No tickets booked in the past' if tickets.empty?
+
+    tickets.each do |ticket|
+      prompt.say '-----------------------'
+      ticket_details = ticket.formatted_details
+      prompt.ok(ticket_details)
+    end
+  end
 end

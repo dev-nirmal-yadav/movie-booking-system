@@ -59,4 +59,12 @@ RSpec.describe Show do
       expect(show.available_seats.size).to eq(18)
     end
   end
+
+  describe '#available_seats_count' do
+    it 'returns the correct count of available seats' do
+      expect(show.available_seats_count).to eq(20)
+      show.book_seat(1)
+      expect(show.available_seats_count).to eq(19)
+    end
+  end
 end

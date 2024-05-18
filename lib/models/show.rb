@@ -24,4 +24,8 @@ class Show
     available_seats.push(seat_number)
     booked_seats.delete(seat_number)
   end
+
+  def available_seats_count
+    available_seats.size
+  end
 end
