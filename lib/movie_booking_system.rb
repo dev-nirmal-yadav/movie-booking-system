@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'tty-prompt'
+require_relative 'interactions/user_interaction_service'
 require_relative 'services/book_ticket_service'
 require_relative 'services/cancel_ticket_service'
 
@@ -7,16 +9,18 @@ require_relative 'services/cancel_ticket_service'
 class MovieBookingSystem
   FILE_PATH = 'data/movies.csv'
 
-  attr_reader :movies, :prompt, :tickets
+  attr_reader :movies, :prompt, :tickets, :user_interaction_service
 
   def initialize
     @movies = []
     @prompt = TTY::Prompt.new
     @tickets = []
+    @user_interaction_service = UserInteractionService.new(self, prompt)
   end
 
   def run
     setup_movies
+    user_interaction_service.run
   end
 
   def book_ticket(options)
