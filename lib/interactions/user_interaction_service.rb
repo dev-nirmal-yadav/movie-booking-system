@@ -7,7 +7,6 @@ require_relative './user_interactions/view_tickets_interaction'
 
 # This service is responsible for Interacting with the User
 class UserInteractionService
-
   MENU_OPTIONS = [
     'Book Ticket',
     'Cancel Ticket',

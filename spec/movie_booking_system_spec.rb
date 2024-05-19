@@ -30,7 +30,9 @@ RSpec.describe MovieBookingSystem do
 
       before do
         allow(ImportMoviesService).to receive(:import).and_return(movies)
-        allow(prompt).to receive(:select).with('Please choose an option:', ['Book Ticket', 'Cancel Ticket', 'View Tickets', 'Exit']).and_return('Exit')
+        allow(prompt).to receive(:select).with('Please choose an option:',
+                                               ['Book Ticket', 'Cancel Ticket', 'View Tickets',
+                                                'Exit']).and_return('Exit')
       end
 
       it 'imports movies and assigns them to the system' do
@@ -45,7 +47,9 @@ RSpec.describe MovieBookingSystem do
     context 'when importing movies fails' do
       before do
         allow(ImportMoviesService).to receive(:import).and_raise(StandardError, 'File not found')
-        allow(prompt).to receive(:select).with('Please choose an option:', ['Book Ticket', 'Cancel Ticket', 'View Tickets', 'Exit']).and_return('Exit')
+        allow(prompt).to receive(:select).with('Please choose an option:',
+                                               ['Book Ticket', 'Cancel Ticket', 'View Tickets',
+                                                'Exit']).and_return('Exit')
       end
 
       it 'displays an error message' do
@@ -63,15 +67,15 @@ RSpec.describe MovieBookingSystem do
   end
 
   let(:movie) { Movie.new(title: 'Jurassic Park', genre: 'Adventure') }
-  let(:show) { Show.new(movie: movie, show_time: '10:00 AM', total_capacity: 20) }
+  let(:show) { Show.new(movie:, show_time: '10:00 AM', total_capacity: 20) }
   let(:seat_numbers) { [1, 2, 3] }
   let(:ticket) { Ticket.new(movie, show, seat_numbers) }
 
   describe '#book_ticket' do
-    let(:options) { { movie: movie, show: show, seat_numbers: seat_numbers } }
+    let(:options) { { movie:, show:, seat_numbers: } }
 
     before do
-      allow(BookTicketService).to receive(:call).and_return(ticket: ticket, message: 'Booking successful!!')
+      allow(BookTicketService).to receive(:call).and_return(ticket:, message: 'Booking successful!!')
       allow(movie_booking_system).to receive(:tickets).and_return([ticket])
     end
 
@@ -83,7 +87,6 @@ RSpec.describe MovieBookingSystem do
   end
 
   describe '#cancel_ticket' do
-
     before do
       allow(movie_booking_system).to receive(:tickets).and_return([ticket])
       ticket.cancel!

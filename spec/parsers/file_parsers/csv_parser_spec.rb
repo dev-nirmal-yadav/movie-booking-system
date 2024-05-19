@@ -5,12 +5,12 @@ require './lib/parsers/file_parsers/csv_parser'
 RSpec.describe FileParser::CSVParser do
   describe '.load' do
     let(:csv_file_path) { 'spec/fixtures/movies.csv' }
-    
+
     let(:expected_items) do
       {
-        genre: "Adventure",
-        show_times: ["12:00 PM", "3:00 PM", "6:00 PM"],
-        title: "Jurassic Park",
+        genre: 'Adventure',
+        show_times: ['12:00 PM', '3:00 PM', '6:00 PM'],
+        title: 'Jurassic Park',
         total_capacity: 30
       }
     end

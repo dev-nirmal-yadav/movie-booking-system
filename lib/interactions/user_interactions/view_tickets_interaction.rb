@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
+# ViewTicketsInteraction shows ticket information.
 class ViewTicketsInteraction
-
   NO_TICKETS_BOOKED = 'No tickets booked yet'
 
   attr_reader :booking_system, :prompt

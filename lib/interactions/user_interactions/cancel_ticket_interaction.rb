@@ -4,7 +4,7 @@
 class CancelTicketInteraction
   GO_BACK = 'Go Back'
   NO_TICKETS_BOOKED = 'No tickets booked yet'
-  
+
   attr_reader :booking_system, :prompt
 
   def initialize(booking_system, prompt)
@@ -18,7 +18,7 @@ class CancelTicketInteraction
 
     selected_ticket = select_ticket(booked_tickets)
 
-    return if selected_ticket.nil? || confirm_cancellation?(selected_ticket)
+    return if selected_ticket.nil? || confirm_cancellation?
 
     result = booking_system.cancel_ticket(selected_ticket)
     prompt.ok result[:message]
@@ -35,7 +35,7 @@ class CancelTicketInteraction
     booked_tickets.find { |ticket| ticket.formatted_details == choice }
   end
 
-  def confirm_cancellation?(ticket)
+  def confirm_cancellation?
     prompt.no?('Are you sure you want to cancel this ticket?')
   end
 end

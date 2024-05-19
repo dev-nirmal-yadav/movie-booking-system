@@ -12,8 +12,6 @@ class ImportMoviesService
     end
   end
 
-  private
-
   def self.create_movie_from_row(row)
     movie = Movie.new(title: row['title'], genre: row['genre'])
     show_times = row['showtimes'].split(',').map(&:strip)

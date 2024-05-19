@@ -6,7 +6,7 @@ require './lib/models/ticket'
 
 RSpec.describe CancelTicketService do
   let(:movie) { double('Movie', title: 'Jurassic Park', genre: 'Adventure') }
-  let(:show) { Show.new(movie: movie, show_time: '10:00 AM', total_capacity: 20) }
+  let(:show) { Show.new(movie:, show_time: '10:00 AM', total_capacity: 20) }
   let(:seat_numbers) { [1, 2, 3] }
   let(:ticket) { Ticket.new(movie, show, seat_numbers) }
 

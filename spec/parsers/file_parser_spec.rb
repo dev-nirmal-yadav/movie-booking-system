@@ -18,22 +18,22 @@ RSpec.describe FileParser do
 
     context 'when the file does not exist' do
       it 'raises an InvalidFileError' do
-        expect {
+        expect do
           described_class.load(invalid_file_path) { |row| row }
-        }.to raise_error(described_class::InvalidFileError)
+        end.to raise_error(described_class::InvalidFileError)
       end
     end
 
     context 'when the file format is unsupported' do
       before do
         allow(described_class).to receive(:valid_file?).with(unsupported_file_path)
-          .and_return(true)
+                                                       .and_return(true)
       end
 
       it 'raises an UnsupportedFormatError' do
-        expect {
+        expect do
           FileParser.load(unsupported_file_path) { |row| row }
-        }.to raise_error(FileParser::UnsupportedFormatError, 'Unsupported file format: .txt')
+        end.to raise_error(FileParser::UnsupportedFormatError, 'Unsupported file format: .txt')
       end
     end
   end
