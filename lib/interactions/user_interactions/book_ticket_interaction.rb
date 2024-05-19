@@ -1,13 +1,20 @@
 # frozen_string_literal: true
 
-# BookTicket triggers the booking process and handles all the logic
-module BookTicket
+# BookTicketInteraction triggers the booking process and handles all the logic
+class BookTicketInteraction
   NO_SEATS_AVAILABLE = 'No seats available for this show'
   LIMITED_SEATS_AVAILABLE = 'No of seats exceeds total available seats'
   INVALID_SELECTION = 'Invalid selection'
   GO_BACK = 'Go Back'
 
-  def book_ticket
+  attr_reader :booking_system, :prompt
+
+  def initialize(booking_system, prompt)
+    @booking_system = booking_system
+    @prompt = prompt
+  end
+
+  def call
     loop do
       movie = select_movie
       break if movie.eql?(GO_BACK)
@@ -28,8 +35,6 @@ module BookTicket
 
   def select_show(movie)
     prompt_for_selection("Choose a showtime for the movie '#{movie.title}':", movie.shows) do |show|
-      return GO_BACK if show.eql?(GO_BACK)
-
       "#{show.show_time} (#{show.available_seats_count} seats available)"
     end
   end

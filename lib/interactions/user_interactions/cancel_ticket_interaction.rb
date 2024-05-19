@@ -1,17 +1,24 @@
 # frozen_string_literal: true
 
-# CancelTicket triggers the cancellation process and handles all the related logic
-module CancelTicket
+# CancelTicketInteraction triggers the cancellation process and handles all the related logic
+class CancelTicketInteraction
   GO_BACK = 'Go Back'
+  NO_TICKETS_BOOKED = 'No tickets booked yet'
   
-  def cancel_ticket
+  attr_reader :booking_system, :prompt
+
+  def initialize(booking_system, prompt)
+    @booking_system = booking_system
+    @prompt = prompt
+  end
+
+  def call
     booked_tickets = booking_system.tickets.select(&:booked?)
-    return prompt.warn 'No tickets booked yet' if booked_tickets.empty?
+    return prompt.warn NO_TICKETS_BOOKED if booked_tickets.empty?
 
     selected_ticket = select_ticket(booked_tickets)
-    return if selected_ticket.nil?
 
-    return if confirm_cancellation?(selected_ticket)
+    return if selected_ticket.nil? || confirm_cancellation?(selected_ticket)
 
     result = booking_system.cancel_ticket(selected_ticket)
     prompt.ok result[:message]

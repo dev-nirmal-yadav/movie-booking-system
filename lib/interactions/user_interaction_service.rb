@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
 require_relative '../services/import_movies_service'
-require_relative './user_interactions/book_ticket'
-require_relative './user_interactions/cancel_ticket'
+require_relative './user_interactions/book_ticket_interaction'
+require_relative './user_interactions/cancel_ticket_interaction'
+require_relative './user_interactions/view_tickets_interaction'
 
 # This service is responsible for Interacting with the User
 class UserInteractionService
-  include BookTicket
-  include CancelTicket
 
   MENU_OPTIONS = [
     'Book Ticket',
@@ -15,6 +14,12 @@ class UserInteractionService
     'View Tickets',
     'Exit'
   ].freeze
+
+  INTERACTION_CLASSES = {
+    'Book Ticket' => BookTicketInteraction,
+    'Cancel Ticket' => CancelTicketInteraction,
+    'View Tickets' => ViewTicketsInteraction
+  }.freeze
 
   attr_reader :booking_system, :prompt
 
@@ -38,18 +43,7 @@ class UserInteractionService
   private
 
   def handle_choice(choice)
-    method_name = choice.downcase.gsub(' ', '_')
-    send(method_name)
-  end
-
-  def view_tickets
-    tickets = booking_system.tickets
-    return prompt.warn 'No tickets booked in the past' if tickets.empty?
-
-    tickets.each do |ticket|
-      prompt.say '-----------------------'
-      ticket_details = ticket.formatted_details
-      prompt.ok(ticket_details)
-    end
+    interaction_class = INTERACTION_CLASSES[choice]
+    interaction_class&.new(booking_system, prompt)&.call
   end
 end

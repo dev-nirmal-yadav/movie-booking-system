@@ -21,7 +21,7 @@ This is a CLI-based Movie Booking System where users can browse available movies
     ```
 4. Make bin/executor executable.
     ```bash
-    chmod +x bin/executor
+    chmod +x bin/executer
     ```
 ## Usage
 
