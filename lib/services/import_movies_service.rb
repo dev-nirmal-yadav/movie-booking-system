@@ -16,7 +16,11 @@ class ImportMoviesService
     movie = Movie.new(title: row['title'], genre: row['genre'])
     show_times = row['showtimes'].split(',').map(&:strip)
     show_times.each do |show_time|
-      show = Show.new(movie:, show_time:, total_capacity: row['totalcapacity'].to_i)
+      show = Show.new(
+        movie:, show_time:,
+        total_capacity: row['totalcapacity'].to_i,
+        vip_capacity: row['vipcapacity'].to_i,
+      )
       movie.add_show(show)
     end
     movie

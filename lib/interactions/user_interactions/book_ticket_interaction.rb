@@ -61,7 +61,8 @@ class BookTicketInteraction
   end
 
   def display_available_seats(show)
-    prompt.say "Available seats: #{show.available_seats.join(', ')}"
+    available_seats = show.available_seats.map(&:to_s)
+    prompt.say "Available seats: #{available_seats.join(', ')}"
   end
 
   def number_of_tickets
@@ -86,7 +87,7 @@ class BookTicketInteraction
   def get_seat_number_from_user(available_seats)
     loop do
       seat_number = prompt.ask('Enter seat number (choose from available seats):', convert: :int)
-      return seat_number if available_seats.include?(seat_number)
+      return seat_number if available_seats.map(&:number).include?(seat_number)
 
       prompt.error "Seat number #{seat_number} is not available. Please choose from available seats."
     end

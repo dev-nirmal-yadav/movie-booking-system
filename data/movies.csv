@@ -1,6 +1,6 @@
-title,genre,totalcapacity,showtimes
-Jurassic Park,Adventure,30,"12:00 PM, 3:00 PM, 6:00 PM"
-The Matrix,Science Fiction,20,"10:00 AM, 1:00 PM, 4:00 PM"
-Forrest Gump,Drama,50,"11:00 AM, 2:00 PM, 5:00 PM"
-The Lord of the Rings: The Fellowship of the Ring,Fantasy,100,"1:00 PM, 4:00 PM, 7:00 PM"
-Titanic,Romance,110,"2:00 PM, 5:00 PM, 8:00 PM"
+title,genre,totalcapacity,vipcapacity,showtimes
+Jurassic Park,Adventure,30,10,"12:00 PM, 3:00 PM, 6:00 PM"
+The Matrix,Science Fiction,20,10,"10:00 AM, 1:00 PM, 4:00 PM"
+Forrest Gump,Drama,50,20,"11:00 AM, 2:00 PM, 5:00 PM"
+The Lord of the Rings: The Fellowship of the Ring,Fantasy,100,20,"1:00 PM, 4:00 PM, 7:00 PM"
+Titanic,Romance,110,10,"2:00 PM, 5:00 PM, 8:00 PM"
