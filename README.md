@@ -21,15 +21,15 @@ This is a CLI-based Movie Booking System where users can browse available movies
     ```
 4. Make bin/executor executable.
     ```bash
-    chmod +x bin/executor
+    chmod +x bin/executer
     ```
 ## Usage
 
-1. Checkout to feature/movie-ticket-booking branch
+1. Checkout to feature/movie-booking-system branch
     ```bash
-    git checkout feature/movie-ticket-booking
+    git checkout feature/movie-booking-system
     ```
-2. Run the application (In **feature/movie-ticket-booking branch**)
+2. Run the application (In **feature/movie-booking-system branch**)
     ```bash
     bin/executor
     ```
